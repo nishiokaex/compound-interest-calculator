@@ -1,25 +1,29 @@
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import Svg, { Circle, Rect } from 'react-native-svg';
+import InputScreen from './screens/InputScreen';
+import ResultsScreen from './screens/ResultsScreen';
+
+const Stack = createStackNavigator();
 
 export default function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <Svg height="100" width="100">
-        <Circle cx="50" cy="50" r="45" stroke="blue" strokeWidth="2.5" fill="green" />
-        <Rect x="15" y="15" width="70" height="70" stroke="red" strokeWidth="2" fill="yellow" />
-      </Svg>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Input">
+        <Stack.Screen 
+          name="Input" 
+          component={InputScreen} 
+          options={{ title: '複利計算機' }}
+        />
+        <Stack.Screen 
+          name="Results" 
+          component={ResultsScreen} 
+          options={{ title: '計算結果' }}
+        />
+      </Stack.Navigator>
       <StatusBar style="auto" />
-    </View>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
